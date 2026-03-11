@@ -1,0 +1,109 @@
+
+    <!-- Draggable language toggle -->
+    <style>
+        #lang-toggle { position: fixed; top: 120px; right: 20px; z-index: 9999; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.95); padding:8px 10px; border-radius:10px; box-shadow:0 6px 18px rgba(0,0,0,0.12); }
+        #lang-toggle .lang-btn { border: none; background: #f1f1f1; padding:6px 10px; border-radius:6px; font-weight:700; cursor: pointer; }
+        #lang-toggle .lang-btn.active { background: #c41230; color: #fff; }
+        #lang-handle { width:28px; height:28px; display:flex; align-items:center; justify-content:center; background:#eee; border-radius:6px; cursor: grab; font-weight:700; }
+        #lang-handle:active { cursor: grabbing; }
+        @media (max-width:480px){ #lang-toggle{ right:12px; top:80px; } }
+    </style>
+
+    <div id="lang-toggle" role="toolbar" aria-label="Language switcher">
+        <div id="lang-handle" aria-hidden="true">☰</div>
+        <button class="lang-btn" id="btn-id" aria-pressed="false">ID</button>
+        <button class="lang-btn" id="btn-en" aria-pressed="true">EN</button>
+    </div>
+
+    <script>
+        (function(){
+            const el = document.getElementById('lang-toggle');
+            const handle = document.getElementById('lang-handle');
+            const btnId = document.getElementById('btn-id');
+            const btnEn = document.getElementById('btn-en');
+
+            // Restore saved position
+            const saved = localStorage.getItem('langTogglePos');
+            if(saved){
+                try{ const pos = JSON.parse(saved); el.style.left = pos.left; el.style.top = pos.top; el.style.right = 'auto'; }
+                catch(e){}
+            }
+
+            // Dragging using pointer events (works for touch & mouse)
+            let dragging = false;
+            let startX=0, startY=0, origX=0, origY=0;
+
+            handle.addEventListener('pointerdown', (e)=>{
+                dragging = true;
+                startX = e.clientX; startY = e.clientY;
+                const rect = el.getBoundingClientRect();
+                origX = rect.left; origY = rect.top;
+                handle.setPointerCapture(e.pointerId);
+            });
+
+            handle.addEventListener('pointermove', (e)=>{
+                if(!dragging) return;
+                const dx = e.clientX - startX; const dy = e.clientY - startY;
+                let left = origX + dx; let top = origY + dy;
+                // keep inside viewport
+                left = Math.max(8, Math.min(left, window.innerWidth - el.offsetWidth - 8));
+                top = Math.max(8, Math.min(top, window.innerHeight - el.offsetHeight - 8));
+                el.style.left = left + 'px'; el.style.top = top + 'px'; el.style.right = 'auto';
+            });
+
+            handle.addEventListener('pointerup', (e)=>{
+                dragging = false; try{ handle.releasePointerCapture(e.pointerId);}catch(e){}
+                // save position
+                localStorage.setItem('langTogglePos', JSON.stringify({ left: el.style.left, top: el.style.top }));
+            });
+
+            // Simple translations for common elements
+            const translations = {
+                nav: {
+                    en: ['Home','About Us','Products','Brands','Sustainability','Investor Relations','News','Career'],
+                    id: ['Beranda','Perusahaan','Produk','Merek','Keberlanjutan','Hubungan Investor','Berita','Karir']
+                },
+                hero: {
+                    en: { h1: 'Total Food Solutions For A Better Life', p: "Indofood is Indonesia's largest food company, providing high-quality food products that enrich the lives of millions of people every day.", btn: 'Explore Our Products' },
+                    id: { h1: 'Solusi Pangan Total Untuk Kehidupan Yang Lebih Baik', p: 'Indofood adalah perusahaan pangan terbesar di Indonesia, menyediakan produk pangan berkualitas tinggi yang memperkaya kehidupan jutaan orang setiap hari.', btn: 'Jelajahi Produk Kami' }
+                },
+                sectionHeader: {
+                    en: { products_h2: 'Our Product Categories', products_p: 'Discover our wide range of quality food products' },
+                    id: { products_h2: 'Kategori Produk Kami', products_p: 'Temukan berbagai macam produk pangan berkualitas' }
+                }
+            };
+
+            function setLanguage(lang){
+                // Nav
+                const navLinks = document.querySelectorAll('.nav-menu li a');
+                if(navLinks.length && translations.nav){
+                    translations.nav[lang].forEach((txt, i)=>{ if(navLinks[i]) navLinks[i].textContent = txt; });
+                }
+                // Hero
+                const heroH1 = document.querySelector('.hero h1');
+                const heroP = document.querySelector('.hero p');
+                const heroBtn = document.querySelector('.btn-primary');
+                if(heroH1) heroH1.textContent = translations.hero[lang].h1;
+                if(heroP) heroP.textContent = translations.hero[lang].p;
+                if(heroBtn) heroBtn.textContent = translations.hero[lang].btn;
+                // Section header
+                const sh = document.querySelector('.section-header h2');
+                const sp = document.querySelector('.section-header p');
+                if(sh) sh.textContent = translations.sectionHeader[lang].products_h2;
+                if(sp) sp.textContent = translations.sectionHeader[lang].products_p;
+
+                // update buttons
+                if(lang==='id'){ btnId.classList.add('active'); btnEn.classList.remove('active'); btnId.setAttribute('aria-pressed','true'); btnEn.setAttribute('aria-pressed','false'); }
+                else { btnEn.classList.add('active'); btnId.classList.remove('active'); btnEn.setAttribute('aria-pressed','true'); btnId.setAttribute('aria-pressed','false'); }
+
+                localStorage.setItem('siteLang',''+lang);
+            }
+
+            // Initialize language from storage
+            const savedLang = localStorage.getItem('siteLang') || 'en';
+            setLanguage(savedLang);
+
+            btnId.addEventListener('click', ()=> setLanguage('id'));
+            btnEn.addEventListener('click', ()=> setLanguage('en'));
+        })();
+    </script>

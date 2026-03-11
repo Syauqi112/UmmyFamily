@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Process - Indofood</title>
+</head>
+<body>
+<script>
+fetch('p.html').then(r=>r.text()).then(html=>{
+  document.open(); document.write(html); document.close();
+  document.title = 'Application Process - Indofood';
+  try{ const h = document.querySelector('[data-lang="hero_title"]'); if(h) h.textContent = 'Application Process'; }catch(e){}
+  try{ const p = document.querySelector('[data-lang="hero_text"]'); if(p) p.textContent = 'Step-by-step guidance on applying for roles at Indofood and what to expect.'; }catch(e){}
+  try{ const c = document.querySelector('[data-lang="hero_cta"]'); if(c) c.textContent = 'Apply Today'; }catch(e){}
+  const nav = document.querySelector('[data-lang="nav_career"]'); if(nav) nav.classList.add('active');
+});
+</script>
+</body>
+</html>

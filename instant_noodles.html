@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instant Noodles - Indofood</title>
+</head>
+<body>
+<script>
+fetch('p.html').then(r=>r.text()).then(html=>{
+  document.open(); document.write(html); document.close();
+  document.title = 'Instant Noodles - Indofood';
+  try{ const h = document.querySelector('[data-lang="hero_title"]'); if(h) h.textContent = 'Instant Noodles'; }catch(e){}
+  try{ const p = document.querySelector('[data-lang="hero_text"]'); if(p) p.textContent = 'Explore our range of instant noodles, flavors, and serving suggestions.'; }catch(e){}
+  try{ const c = document.querySelector('[data-lang="hero_cta"]'); if(c) c.textContent = 'See Varieties'; }catch(e){}
+  const nav = document.querySelector('[data-lang="nav_products"]'); if(nav) nav.classList.add('active');
+  try{
+    const hero = document.querySelector('.hero-section');
+    if(hero) hero.insertAdjacentHTML('afterend', `
+      <section class="page-content py-5">
+        <div class="container">
+          <div class="card p-4">
+            <h2>Produk: Mie Instan</h2>
+            <p>Detail kategori mie instan: jenis, rasa populer, dan tips penyajian untuk setiap varian.</p>
+          </div>
+        </div>
+      </section>
+    `);
+  }catch(e){}
+});
+</script>
+</body>
+</html>

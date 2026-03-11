@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UmmyFamily - Total Food Solutions</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --UmmyFamily-red: #c41230;
+            --UmmyFamily-dark: #8b0d24;
+            --text-dark: #333;
+            --text-gray: #666;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--UmmyFamily-red);
+            color: white;
+            font-size: 12px;
+            padding: 8px 0;
+        }
+
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .top-bar a:hover {
+            opacity: 0.8;
+        }
+
+        /* Navbar Custom */
+        .navbar-custom {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            padding: 25px 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: var(--UmmyFamily-red);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            width: 0;
+            height: 2px;
+            background: var(--UmmyFamily-red);
+            transition: width 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: calc(100% - 30px);
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 20px;
+            padding: 5px;
+            background: #f5f5f5;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+        }
+
+        .lang-btn {
+            padding: 5px 15px;
+            border: none;
+            background: transparent;
+            color: var(--text-gray);
+            font-weight: 600;
+            font-size: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+
+        .lang-btn.active {
+            background: var(--UmmyFamily-red);
+            color: white;
+            box-shadow: 0 2px 8px rgba(196,18,48,0.3);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--UmmyFamily-red);
+        }
+
+        /* Search Icon */
+        .search-btn {
+            color: var(--UmmyFamily-red);
+            font-size: 18px;
+            margin-left: 15px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        /* Mobile Search (hidden by default, shown on smartphone) */
+        .mobile-search {
+            display: none;
+            position: relative;
+        }
+
+        .mobile-search.show {
+            display: block;
+        }
+
+        .mobile-search .form-control {
+            border-radius: 30px;
+            padding: 12px 48px 12px 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
+        }
+
+        .mobile-search .close-search {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--UmmyFamily-red);
+            font-size: 18px;
+            padding: 6px 8px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--UmmyFamily-red) 0%, var(--UmmyFamily-dark) 100%);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-custom {
+            padding: 15px 40px;
+            background: white;
+            color: var(--UmmyFamily-red);
+            font-weight: 700;
+            border-radius: 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            background: white;
+            color: var(--UmmyFamily-red);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+        }
+
+        /* Section Headers */
+        .section-title {
+            color: var(--UmmyFamily-red);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            color: var(--text-gray);
+        }
+
+        /* Product Cards */
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border: none;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-img-wrapper {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img-wrapper img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .product-title {
+            color: var(--UmmyFamily-red);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .about-img-wrapper {
+            position: relative;
+        }
+
+        .about-img {
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: var(--UmmyFamily-red);
+            color: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(196,18,48,0.3);
+        }
+
+        .badge-years {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .badge-text {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            color: var(--UmmyFamily-red);
+            font-size: 36px;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Brands Section */
+        .brands-section {
+            background: var(--UmmyFamily-red);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .brand-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            height: 100%;
+        }
+
+        .brand-card:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-5px);
+        }
+
+        .brand-card img {
+            max-width: 100%;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        /* News Section */
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border: none;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-img-wrapper {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .news-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--UmmyFamily-red);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .news-date .day {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .news-date .month {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .news-category {
+            color: var(--UmmyFamily-red);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 0;
+        }
+
+        .footer-logo {
+            height: 50px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-text {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background: var(--UmmyFamily-red);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--UmmyFamily-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                border-top: 1px solid #eee;
+            }
+
+            .lang-toggle {
+                margin: 15px 0;
+                justify-content: center;
+            }
+
+            .search-btn {
+                margin: 10px 0;
+            }
+
+            .hero-section {
+                margin-top: 80px;
+                padding: 60px 0;
+            }
+
+            .hero-title {
+                font-size: 32px;
+            }
+
+            .experience-badge {
+                width: 120px;
+                height: 120px;
+                bottom: -10px;
+                right: -10px;
+            }
+
+            .badge-years {
+                font-size: 28px;
+            }
+        }
+
+        /* Animations */
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dropdown styles for navbar */
+        .navbar-nav { position: relative; }
+        .navbar-nav .nav-item { position: relative; }
+        .navbar-nav .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            display: none;
+            padding: 6px 0;
+            z-index: 1050;
+        }
+        .navbar-nav .dropdown-menu li { list-style: none; }
+        .navbar-nav .dropdown-menu li a { display:block; padding:8px 16px; color:#333; text-decoration:none; white-space:nowrap; }
+        .navbar-nav .dropdown-menu li a:hover { background:#f5f5f5; color:var(--UmmyFamily-red); }
+        .navbar-nav .nav-item:hover > .dropdown-menu { display:block; }
+        .navbar-nav .dropdown-menu.show { display:block; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="#" alt="Ummy Family">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Mobile search form (only visible on small screens) -->
+                <form class="mobile-search d-lg-none w-100 my-2" id="mobileSearchForm" style="display:none;">
+                    <input type="search" class="form-control" id="mobileSearchInput" placeholder="Cari produk, berita...">
+                    <button type="button" class="close-search" id="closeMobileSearch"><i class="fas fa-times"></i></button>
+                </form>
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="p.html" data-lang="nav_home" aria-label="Beranda"><i class="fas fa-home" aria-hidden="true"></i></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_about" aria-haspopup="true" aria-expanded="false">Perusahaan</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="company_overview.html" data-lang="about_overview">Sekilas Perusahaan</a></li>
+                            <li><a href="visi_misi.html" data-lang="about_vision">Visi, Misi, dan Nilai</a></li>
+                            <li><a href="sejarah.html" data-lang="about_history">Sejarah</a></li>
+                            <li><a href="penghargaan_dan_sertifikat.html" data-lang="about_awards">Penghargaan dan Sertifikasi</a></li>
+                            <li><a href="dewan_komisaris.html" data-lang="about_commissioners">Dewan Komisaris</a></li>
+                            <li><a href="dewan_direksi.html" data-lang="about_directors">Dewan Direksi</a></li>
+                            <li><a href="struktur_manajemen.html" data-lang="about_management">Struktur Manajemen</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_products" aria-haspopup="true" aria-expanded="false">Grup Bisnis</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="instant_noodles.html" data-lang="products_instant">Produk Konsumen Bermerek</a></li>
+                            <li><a href="dairy.html" data-lang="products_bogasari">Bogasari</a></li>
+                            <li><a href="snacks.html" data-lang="products_agribusiness">Agribisnis</a></li>
+                            <li><a href="seasonings.html" data-lang="products_distribution">Distribusi</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_brands" aria-haspopup="true" aria-expanded="false">Merek</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="indomie.html" data-lang="brand_indomie">Indomie</a></li>
+                            <li><a href="indomilk.html" data-lang="brand_indomilk">Indomilk</a></li>
+                            <li><a href="chiki.html" data-lang="brand_chiki">Chiki</a></li>
+                            <li><a href="popmie.html" data-lang="brand_popmie">Pop Mie</a></li>
+                            <li><a href="sarimi.html" data-lang="brand_sarimi">Sarimi</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_sustainability" aria-haspopup="true" aria-expanded="false">Investor Relations</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="siaran_pers_keuangan.html" data-lang="investor_financial_pr">Siaran Pers Keuangan</a></li>
+                            <li><a href="keterbukaan_informasi.html" data-lang="investor_disclosure">Keterbukaan Informasi</a></li>
+                            <li><a href="laporan_keuangan.html" data-lang="investor_financial_reports">Laporan Keuangan</a></li>
+                            <li><a href="laporan_tahunan.html" data-lang="investor_annual_report">Laporan Tahunan</a></li>
+                            <li><a href="struktur_pemegang_saham.html" data-lang="investor_shareholders">Struktur Pemegang Saham</a></li>
+                            <li><a href="tata_kelola.html" data-lang="investor_governance">Tata Kelola Perusahaan</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_investor" aria-haspopup="true" aria-expanded="false">Berita Dan Kegiatan</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="berita.html" data-lang="news_news">Berita</a></li>
+                            <li><a href="kegiatan.html" data-lang="news_activities">Kegiatan</a></li>
+                            <li><a href="siaran_pers.html" data-lang="news_press">Siaran Pers</a></li>
+                            <li><a href="peluncuran_produk_baru.html" data-lang="news_product_launch">Peluncuran Produk Baru</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_news" aria-haspopup="true" aria-expanded="false">Keberlanjutan</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="laporan_keberlanjutan.html" data-lang="sustain_report">Laporan Keberlanjutan</a></li>
+                            <li><a href="pendekatan_keberlanjutan.html" data-lang="sustain_approach">Pendekatan Keberlanjutan</a></li>
+                            <li><a href="tangguh_dalam_menghadirkan_produk.html" data-lang="sustain_environment">Perlindungan Terhadap Lingkungan</a></li>
+                            <li><a href="tangguh_dalam_menghadirkan_produk_baru.html" data-lang="sustain_resilient">Tangguh Dalam Menghadirkan Produk Pangan Untuk Semua</a></li>
+                            <li><a href="tumbuh_bersama_karyawan_dan_masyarakat.html" data-lang="sustain_grow">Tumbuh Bersama Karyawan Dan Masyarakat</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_career" aria-haspopup="true" aria-expanded="false">Karir</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="karir.html" data-lang="career">Karir</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-lang="nav_kontakkami" aria-haspopup="true" aria-expanded="false">Kontak Kami</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="informasi_kontak.html" data-lang="contact_info">Informasi Kontak</a></li>
+                            <li><a href="formulir_kontak.html" data-lang="contact_form">Formulir Kontak</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Language Toggle -->
+                    <li class="nav-item">
+                        <div class="lang-toggle">
+                            <button class="lang-btn active" onclick="changeLanguage('id')" id="btn-id">ID</button>
+                            <button class="lang-btn" onclick="changeLanguage('en')" id="btn-en">EN</button>
+                        </div>
+                    </li>
+
+                    <!-- Search -->
+                    <li class="nav-item">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="hero-title" data-lang="hero_title">Solusi Pangan Total Untuk Kehidupan Yang Lebih Baik</h1>
+                    <p class="hero-text" data-lang="hero_text">Ummy Family adalah perusahaan pangan terbesar di Indonesia, menyediakan produk pangan berkualitas tinggi yang memperkaya kehidupan jutaan orang setiap hari.</p>
+                    <a href="#" class="btn-custom" data-lang="hero_cta">Jelajahi Produk Kami</a>
+                </div>
+                <div class="col-lg-6 hero-image d-none d-lg-block">
+                    <img src="background1.jpg" alt="Ummy Family Products">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-lang="products_title">Kategori Produk Kami</h2>
+                <p class="section-subtitle" data-lang="products_subtitle">Temukan berbagai macam produk pangan berkualitas</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="bakwan.jpg" alt="Bakwan" class="product-img">
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="product-title" data-lang="product_noodles">Bakwan</h5>
+                            <p class="text-muted" data-lang="product_noodles_desc">Bakwan renyah dan lezat, cocok untuk camilan sehat</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="gorengan.jpg" alt="Gorengan">
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="product-title" data-lang="product_dairy">Gorengan</h5>
+                            <p class="text-muted" data-lang="product_dairy_desc">Berbagai macam gorengan lezat dan sehat</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="tahu.jpg" alt=" Tahu Ringan">
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="product-title" data-lang="product_snacks">Tahu</h5>
+                            <p class="text-muted" data-lang="product_snacks_desc">Chiki, Tiv Ta Tiv, dan berbagai varian snack lezat</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card">
+                        <div class="product-img-wrapper">
+                            <img src="tempe.jpg" alt="Tempe">
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="product-title" data-lang="product_seasoning">Tempe</h5>
+                            <p class="text-muted" data-lang="product_seasoning_desc">Sambal, saus, dan kebutuhan memasak lainnya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="about-img-wrapper">
+                        <img src="kantor4.jpg" alt="Tentang UmmyFamily" class="about-img">
+                        <div class="experience-badge">
+                            <span class="badge-years">50+</span>
+                            <span class="badge-text" data-lang="years_text">Tahun Keunggulan</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold mb-4">
+                        <span data-lang="about_title1">Memimpin Industri Pangan </span>
+                        <span style="color: var(--UmmyFamily-red);" data-lang="about_title2">Sejak 1968</span>
+                    </h2>
+                    <p class="text-muted mb-4" data-lang="about_text1">UmmyFamily telah berkembang menjadi salah satu perusahaan terbesar dan paling sukses di Indonesia, menyampaikan produk pangan berkualitas yang telah menjadi nama rumah tangga di seluruh negeri.</p>
+                    <p class="text-muted mb-4" data-lang="about_text2">Komitmen kami terhadap inovasi, kualitas, dan keberlanjutan mendorong kami untuk terus meningkatkan dan memperluas penawaran produk kami untuk memenuhi kebutuhan konsumen yang terus berkembang.</p>
+                    
+                    <div class="row g-4 mt-2">
+                        <div class="col-4 text-center stat-item">
+                            <h3>50+</h3>
+                            <p data-lang="stat_years">Tahun Pengalaman</p>
+                        </div>
+                        <div class="col-4 text-center stat-item">
+                            <h3>20+</h3>
+                            <p data-lang="stat_categories">Kategori Produk</p>
+                        </div>
+                        <div class="col-4 text-center stat-item">
+                            <h3>100M+</h3>
+                            <p data-lang="stat_consumers">Konsumen Puas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-3" data-lang="brands_title">Merek-Merek Kami</h2>
+                <p class="opacity-75" data-lang="brands_subtitle">Dipercaya oleh jutaan keluarga di seluruh Indonesia</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Indomie</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Chiki</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Pop Mie</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Sarimi</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Indomilk</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="brand-card d-flex align-items-center justify-content-center">
+                        <span class="brand-text h5 fw-bold text-white">Bogasari</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="section-title" data-lang="news_title">Berita Terbaru</h2>
+                <p class="section-subtitle" data-lang="news_subtitle">Tetap terupdate dengan perkembangan terbaru kami</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="news-card">
+                        <div class="news-img-wrapper">
+                            <img src="kantor1.jpg" alt="Berita">
+                            <div class="news-date">
+                                <div class="day">15</div>
+                                <div class="month">Mar</div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="news-category mb-2" data-lang="news_category1">Berita Perusahaan</div>
+                            <h5 class="fw-bold mb-3" data-lang="news_title1">UmmyFamily Luncurkan Inisiatif Kemasan Ramah Lingkungan</h5>
+                            <p class="text-muted" data-lang="news_excerpt1">Berkomitmen pada tanggung jawab lingkungan, UmmyFamily memperkenalkan kemasan ramah lingkungan di lini produk utama...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="news-card">
+                        <div class="news-img-wrapper">
+                            <img src="kantor2.jpg" alt="Berita">
+                            <div class="news-date">
+                                <div class="day">12</div>
+                                <div class="month">Mar</div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="news-category mb-2" data-lang="news_category2">Peluncuran Produk</div>
+                            <h5 class="fw-bold mb-3" data-lang="news_title2">Varian Bakwan Baru Debut di Seluruh Negeri</h5>
+                            <p class="text-muted" data-lang="news_excerpt2">Tambahan terbaru dalam keluarga Bakwan kami menghadirkan cita rasa lokal otentik ke setiap rumah...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="news-card">
+                        <div class="news-img-wrapper">
+                            <img src="kantor3.jpg" alt="Berita">
+                            <div class="news-date">
+                                <div class="day">08</div>
+                                <div class="month">Mar</div>
+                            </div>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="news-category mb-2" data-lang="news_category3">Penghargaan</div>
+                            <h5 class="fw-bold mb-3" data-lang="news_title3">UmmyFamily Raih Penghargaan Perusahaan Terbaik 2025</h5>
+                            <p class="text-muted" data-lang="news_excerpt3">Diakui untuk budaya kerja yang luar biasa dan program pengembangan karyawan...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <img src="https://via.placeholder.com/150x50/c41230/ffffff?text=UmmyFamily" alt="UmmyFamily" class="footer-logo">
+                    <p class="footer-text" data-lang="footer_desc">UmmyFamily adalah perusahaan pangan terbesar di Indonesia, berkomitmen untuk menyediakan produk pangan berkualitas dan menciptakan nilai berkelanjutan bagi semua pemangku kepentingan.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title" data-lang="footer_quicklinks">Tautan Cepat</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-lang="nav_about">Perusahaan</a></li>
+                        <li><a href="#" data-lang="nav_products">Produk Kami</a></li>
+                        <li><a href="#" data-lang="nav_sustainability">Keberlanjutan</a></li>
+                        <li><a href="#" data-lang="nav_investor">Hubungan Investor</a></li>
+                        <li><a href="#" data-lang="nav_career">Karir</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title" data-lang="footer_products">Produk</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-lang="product_noodles">Bakwan</a></li>
+                        <li><a href="#" data-lang="product_dairy">Gorengan</a></li>
+                        <li><a href="#" data-lang="product_snacks">Tahu</a></li>
+                        <li><a href="#" data-lang="product_seasoning">Tempe</a></li>
+                        <li><a href="#" data-lang="product_beverages">Minuman</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title" data-lang="footer_contact">Kontak</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" data-lang="contact">Hubungi Kami</a></li>
+                        <li><a href="#" data-lang="faq">FAQ</a></li>
+                        <li><a href="#" data-lang="customer_service">Layanan Pelanggan</a></li>
+                        <li><a href="#" data-lang="media_center">Pusat Media</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 PT UmmyFamily Sukses Makmur Tbk. <span data-lang="rights">Hak Cipta Dilindungi.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Language Toggle Script -->
+    <script>
+        const translations = {
+            id: {
+                sustain_report: "Laporan Keberlanjutan",
+                sustain_approach: "Pendekatan Keberlanjutan",
+                sustain_environment: "Perlindungan Terhadap Lingkungan",
+                sustain_resilient: "Tangguh Dalam Menghadirkan Produk Pangan Untuk Semua",
+                sustain_grow: "Tumbuh Bersama Karyawan Dan Masyarakat",
+                about_overview: "Sekilas Perusahaan",
+                about_vision: "Visi, Misi, dan Nilai",
+                about_history: "Sejarah",
+                about_awards: "Penghargaan dan Sertifikasi",
+                about_commissioners: "Dewan Komisaris",
+                about_directors: "Dewan Direksi",
+                about_management: "Struktur Manajemen",
+                products_instant: "Produk Konsumen Bermerek",
+                products_bogasari: "Bogasari",
+                products_agribusiness: "Agribisnis",
+                products_distribution: "Distribusi",
+                brand_indomie: "Indomie",
+                brand_indomilk: "Indomilk",
+                brand_chiki: "Chiki",
+                brand_popmie: "Pop Mie",
+                brand_sarimi: "Sarimi",
+                news_title1: "Berita Terbaru",
+                news_excerpt1: "Tetap terupdate dengan perkembangan terbaru kami",
+                news_title2: "Inovasi Terbaru dalam Produk Pangan",
+                news_excerpt2: "Excited to announce the launch of our new line of healthy snacks, designed to provide delicious options without compromising on nutrition...",
+
+                news_title3: "Penghargaan Perusahaan Terbaik 2025",
+                news_excerpt3: "Diakui untuk budaya kerja yang luar biasa dan program pengembangan karyawan...",
+                
+                contact: "Hubungi Kami",
+                sitemap: "Peta Situs",
+                terms: "Syarat & Ketentuan",
+                nav_home: "Beranda",
+                nav_about: "Perusahaan",
+                nav_products: "Produk",
+                nav_brands: "Merek",
+                nav_sustainability: "Keberlanjutan",
+                nav_investor: "Hubungan Investor",
+                nav_news: "Berita",
+                nav_career: "Karir",
+                nav_kontakkami: "Kontak Kami",
+                hero_title: "Solusi Pangan Total Untuk Kehidupan Yang Lebih Baik",
+                hero_text: "UmmyFamily adalah perusahaan pangan terbesar di Indonesia, menyediakan produk pangan berkualitas tinggi yang memperkaya kehidupan jutaan orang setiap hari.",
+                hero_cta: "Jelajahi Produk Kami",
+                products_title: "Kategori Produk Kami",
+                products_subtitle: "Temukan berbagai macam produk pangan berkualitas",
+                product_noodles: "Bakwan",
+                product_noodles_desc: "Bakwan renyah dan lezat, cocok untuk camilan sehat",
+                product_dairy: "Gorengan",
+                product_dairy_desc: "Berbagai macam gorengan lezat dan sehat",
+                product_snacks: "Tahu",
+                product_snacks_desc: "tahu renyah dan bergizi, pilihan sempurna untuk camilan sehat",
+                product_seasoning: "Tempe",
+                product_seasoning_desc: "Tempe serbaguna, kaya protein, ideal untuk berbagai hidangan",
+                product_beverages: "Minuman",
+                years_text: "Tahun Keunggulan",
+                about_title1: "Memimpin Industri Pangan ",
+                about_title2: "Sejak 1968",
+                about_text1: "UmmyFamily telah berkembang menjadi salah satu perusahaan terbesar dan paling sukses di Indonesia, menyampaikan produk pangan berkualitas yang telah menjadi nama rumah tangga di seluruh negeri.",
+                about_text2: "Komitmen kami terhadap inovasi, kualitas, dan keberlanjutan mendorong kami untuk terus meningkatkan dan memperluas penawaran produk kami untuk memenuhi kebutuhan konsumen yang terus berkembang.",
+                stat_years: "Tahun Pengalaman",
+                stat_categories: "Kategori Produk",
+                stat_consumers: "Konsumen Puas",
+                brands_title: "Merek-Merek Kami",
+                brands_subtitle: "Dipercaya oleh jutaan keluarga di seluruh Indonesia",
+                news_title: "Berita Terbaru",
+                news_subtitle: "Tetap terupdate dengan perkembangan terbaru kami",
+                news_category1: "Berita Perusahaan",
+                news_title1: "UmmyFamily Luncurkan Inisiatif Kemasan Ramah Lingkungan",
+                news_excerpt1: "Berkomitmen pada tanggung jawab lingkungan, UmmyFamily memperkenalkan kemasan ramah lingkungan di lini produk utama...",
+                news_category2: "Peluncuran Produk",
+                news_title2: "Varian Baru Debut di Seluruh Negeri",
+                news_excerpt2: "Tambahan terbaru dalam keluarga Bakwan kami menghadirkan cita rasa lokal otentik ke setiap rumah...",
+                news_category3: "Penghargaan",
+                news_title3: "UmmyFamily Raih Penghargaan Perusahaan Terbaik 2025",
+                news_excerpt3: "Diakui untuk budaya kerja yang luar biasa dan program pengembangan karyawan...",
+                footer_desc: "UmmyFamily adalah perusahaan pangan terbesar di Indonesia, berkomitmen untuk menyediakan produk pangan berkualitas dan menciptakan nilai berkelanjutan bagi semua pemangku kepentingan.",
+                footer_quicklinks: "Tautan Cepat",
+                footer_products: "Produk",
+                footer_contact: "Kontak",
+                faq: "FAQ",
+                customer_service: "Layanan Pelanggan",
+                media_center: "Pusat Media",
+                rights: "Hak Cipta Dilindungi."
+            },
+            en: {
+                sustain_report: "Sustainability Report",
+                sustain_approach: "Sustainability Approach",
+                sustain_environment: "Environmental Protection",
+                sustain_resilient: "Resilient in Providing Food Products for All",
+                sustain_grow: "Growing Together with Employees and Communities",
+                about_overview: "Company Overview",
+                about_vision: "Vision, Mission, and Values",
+                about_history: "History",
+                about_awards: "Awards and Certifications",
+                about_commissioners: "Board of Commissioners",
+                about_directors: "Board of Directors",
+                about_management: "Management Structure",
+                products_instant: "Branded Consumer Products",
+                products_bogasari: "Bogasari",
+                products_agribusiness: "Agribusiness",
+                products_distribution: "Distribution",
+                brand_indomie: "Indomie",
+                brand_indomilk: "Indomilk",
+                brand_chiki: "Chiki",
+                brand_popmie: "Pop Mie",
+                brand_sarimi: "Sarimi",
+                news_title1: "Latest News",
+                news_excerpt1: "Stay updated with our latest developments",
+                news_title2: "New Innovations in Food Products",
+                news_excerpt2: "Excited to announce the launch of our new line of healthy snacks, designed to provide delicious options without compromising on nutrition...",
+                news_title3: "Best Company Award 2025",
+                news_excerpt3: "Recognized for outstanding workplace culture and employee development programs...",
+                footer_desc: "UmmyFamily is Indonesia's largest food company, committed to providing high-quality food products and creating sustainable value for all stakeholders.",
+                footer_quicklinks: "Quick Links",
+                footer_products: "Products",
+                footer_contact: "Contact Us",
+                footer_copyright: "Copyright © 2023 UmmyFamily. All rights reserved.",
+                contact: "Contact Us",
+                sitemap: "Sitemap",
+                terms: "Terms & Conditions",
+                nav_home: "Home",
+                nav_about: "Company",
+                nav_products: "Products",
+                nav_brands: "Brands",
+                nav_sustainability: "Sustainability",
+                nav_investor: "Investor Relations",
+                nav_news: "News",
+                nav_career: "Careers",
+                nav_kontakkami: "Contact Us",
+                hero_title: "Total Food Solutions For A Better Life",
+                hero_text: "UmmyFamily is Indonesia's largest food company, providing high-quality food products that enrich the lives of millions every day.",
+                hero_cta: "Explore Our Products",
+                products_title: "Our Product Categories",
+                products_subtitle: "Discover a wide range of quality food products",
+                product_noodles: "Bakwan",
+                product_noodles_desc: "Crispy and delicious bakwan, perfect for healthy snacking",
+                product_dairy: "Fried Snacks",
+                product_dairy_desc: "A variety of delicious and healthy fried snacks",
+                product_snacks: "Tofu",
+                product_snacks_desc: "Crispy and nutritious tofu, a perfect choice for healthy snacking",
+                product_seasoning: "Tempeh",
+                product_seasoning_desc: "Versatile tempeh, rich in protein, ideal for various dishes",
+                product_beverages: "Beverages",
+                years_text: "Years of Excellence",
+                about_title1: "Leading The Food Industry ",
+                about_title2: "Since 1968",
+                about_text1: "UmmyFamily has grown to become one of the largest and most successful companies in Indonesia, delivering quality food products that have become household names across the nation.",
+                about_text2: "Our commitment to innovation, quality, and sustainability drives us to continuously improve and expand our product offerings to meet the evolving needs of consumers.",
+                stat_years: "Years of Experience",
+                stat_categories: "Product Categories",
+                stat_consumers: "Satisfied Consumers",
+                brands_title: "Our Brands",
+                brands_subtitle: "Trusted by millions of families across Indonesia",
+                news_title: "Latest News",
+                news_subtitle: "Stay updated with our latest developments",
+                news_category1: "Company News",
+                news_title1: "UmmyFamily Launches Eco-Friendly Packaging Initiative",
+                news_excerpt1: "Committed to environmental responsibility, UmmyFamily introduces eco-friendly packaging across its main product lines...",
+                news_category2: "Product Launch",
+                news_title2: "New Product Launch: UmmyFamily's Healthy Snack Line",
+                news_excerpt2: "Excited to announce the launch of our new line of healthy snacks, designed to provide delicious options without compromising on nutrition...",
+                news_title3: "UmmyFamily Wins Best Company Award 2025"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update button states
+            document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            
+            // Update all elements with data-lang attribute
+            const elements = document.querySelectorAll('[data-lang]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update html lang attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference to localStorage
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Load saved language preference on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('preferredLanguage') || 'id';
+            changeLanguage(savedLang);
+        });
+
+        // Smooth scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .news-card, .stat-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile search toggle: show search input when on smartphone and search icon tapped
+        (function() {
+            const mobileQuery = window.matchMedia('(max-width: 991px)');
+            const searchBtn = document.querySelector('.search-btn');
+            const mobileSearchForm = document.getElementById('mobileSearchForm');
+            const mobileSearchInput = document.getElementById('mobileSearchInput');
+            const closeMobileSearch = document.getElementById('closeMobileSearch');
+
+            if (!searchBtn || !mobileSearchForm) return;
+
+            function openMobileSearch() {
+                mobileSearchForm.style.display = 'block';
+                setTimeout(() => mobileSearchForm.classList.add('show'), 10);
+                if (mobileSearchInput) mobileSearchInput.focus();
+            }
+
+            function closeMobile() {
+                mobileSearchForm.classList.remove('show');
+                setTimeout(() => mobileSearchForm.style.display = 'none', 180);
+            }
+
+            searchBtn.addEventListener('click', function(e) {
+                if (mobileQuery.matches) {
+                    e.preventDefault();
+                    if (mobileSearchForm.style.display === 'block') {
+                        closeMobile();
+                    } else {
+                        openMobileSearch();
+                    }
+                }
+            });
+
+            if (closeMobileSearch) {
+                closeMobileSearch.addEventListener('click', function() {
+                    closeMobile();
+                });
+            }
+
+            // Close mobile search when user taps outside the input
+            document.addEventListener('click', function(ev) {
+                if (!mobileQuery.matches) return;
+                if (!mobileSearchForm || mobileSearchForm.style.display !== 'block') return;
+                if (ev.target === searchBtn || mobileSearchForm.contains(ev.target)) return;
+                closeMobile();
+            });
+        })();
+
+        // Dropdown toggle for touch/click devices + close on outside click
+        (function(){
+            document.addEventListener('click', function(e){
+                const toggle = e.target.closest('.dropdown-toggle');
+                // close all menus first
+                document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+                if(toggle){
+                    e.preventDefault();
+                    const menu = toggle.parentElement.querySelector('.dropdown-menu');
+                    if(menu) menu.classList.toggle('show');
+                }
+            });
+
+            // Close dropdowns on ESC
+            document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show')); } });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History - Indofood</title>
+</head>
+<body>
+<script>
+fetch('p.html').then(r=>r.text()).then(html=>{
+  document.open(); document.write(html); document.close();
+  document.title = 'History - Indofood';
+  try{ const h = document.querySelector('[data-lang="hero_title"]'); if(h) h.textContent = 'History'; }catch(e){}
+  try{ const p = document.querySelector('[data-lang="hero_text"]'); if(p) p.textContent = 'A timeline of Indofood growth and milestones from founding to present.'; }catch(e){}
+  try{ const c = document.querySelector('[data-lang="hero_cta"]'); if(c) c.textContent = 'Explore Our Story'; }catch(e){}
+  const nav = document.querySelector('[data-lang="nav_about"]'); if(nav) nav.classList.add('active');
+  try{
+    const hero = document.querySelector('.hero-section');
+    if(hero) hero.insertAdjacentHTML('afterend', `
+      <section class="page-content py-5">
+        <div class="container">
+          <div class="card p-4">
+            <h2>Sekilas Sejarah</h2>
+            <p>Timeline singkat: berdiri, ekspansi, inovasi produk, dan pencapaian penting Indofood sepanjang dekade.</p>
+          </div>
+        </div>
+      </section>
+    `);
+  }catch(e){}
+});
+</script>
+</body>
+</html>

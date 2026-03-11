@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indofood - Total Food Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .top-bar {
+            background: #c41230;
+            color: white;
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .top-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .nav-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #c41230;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c41230;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .search-icon {
+            color: #c41230;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 120px;
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, #c41230 0%, #8b0d24 100%);
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #c41230;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 30px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            color: #c41230;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .product-info h3 {
+            color: #c41230;
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: #c41230;
+            color: white;
+            padding: 30px;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(196,18,48,0.3);
+        }
+
+        .experience-badge .years {
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .experience-badge .text {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-text h2 span {
+            color: #c41230;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #c41230;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Brands Section */
+        .brands {
+            padding: 80px 0;
+            background: #c41230;
+            color: white;
+        }
+
+        .brands .section-header h2 {
+            color: white;
+        }
+
+        .brands .section-header p {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 30px;
+            align-items: center;
+        }
+
+        .brand-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .brand-item:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.3);
+            transform: translateY(-5px);
+        }
+
+        .brand-item img {
+            max-width: 100%;
+            height: 60px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        /* News Section */
+        .news {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .news-image {
+            height: 220px;
+            background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-date {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #c41230;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .news-date .day {
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .news-date .month {
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .news-content {
+            padding: 25px;
+        }
+
+        .news-category {
+            color: #c41230;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand img {
+            height: 50px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-brand p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #c41230;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #c41230;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding: 20px 0;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero {
+                height: auto;
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .products-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Dropdown styles */
+        .nav-menu { position: relative; }
+        .nav-item { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            background: #fff;
+            min-width: 220px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            display: none;
+            padding: 6px 0;
+            z-index: 1000;
+        }
+        .dropdown-menu li { list-style: none; }
+        .dropdown-menu li a { display:block; padding:8px 16px; color:#333; text-decoration:none; white-space:nowrap; }
+        .dropdown-menu li a:hover { background:#f5f5f5; color:#c41230; }
+        .nav-item:hover > .dropdown-menu { display:block; }
+        .dropdown-menu.show { display:block; }
+
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i> +62 21 1234 5678
+                    </div>
+                    <div class="top-links">
+                        <a href="#">Contact Us</a>
+                        <a href="#">Sitemap</a>
+                        <a href="#">Terms & Condition</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="container">
+            <div class="nav-main">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/150x50/c41230/ffffff?text=INDOFOOD" alt="Indofood Logo">
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Perusahaan</a></li>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Brands</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                <ul class="nav-menu">
+                    <li><a href="#">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">About Us</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Company Overview</a></li>
+                            <li><a href="#">History</a></li>
+                            <li><a href="#">Leadership</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Locations</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Products</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Instant Noodles</a></li>
+                            <li><a href="#">Dairy</a></li>
+                            <li><a href="#">Snacks</a></li>
+                            <li><a href="#">Seasonings</a></li>
+                            <li><a href="#">Beverages</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Brands</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Indomie</a></li>
+                            <li><a href="#">Indomilk</a></li>
+                            <li><a href="#">Chiki</a></li>
+                            <li><a href="#">Pop Mie</a></li>
+                            <li><a href="#">Sarimi</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Sustainability</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Environmental</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Responsible Sourcing</a></li>
+                            <li><a href="#">Certifications</a></li>
+                            <li><a href="#">Reports</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Investor Relations</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Financials</a></li>
+                            <li><a href="#">Governance</a></li>
+                            <li><a href="#">Stock Info</a></li>
+                            <li><a href="#">Reports</a></li>
+                            <li><a href="#">Meetings & Events</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">News</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Press Releases</a></li>
+                            <li><a href="#">Media Kit</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Announcements</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">Career</a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Job Openings</a></li>
+                            <li><a href="#">Internships</a></li>
+                            <li><a href="#">Employee Benefits</a></li>
+                            <li><a href="#">Life at Indofood</a></li>
+                            <li><a href="#">Application Process</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Total Food Solutions For A Better Life</h1>
+                <p>Indofood is Indonesia's largest food company, providing high-quality food products that enrich the lives of millions of people every day.</p>
+                <a href="#" class="btn-primary">Explore Our Products</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="" width="100%" height="100%" alt="Indofood Products">
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Product Categories</h2>
+                <p>Discover our wide range of quality food products</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x200/f5f5f5/c41230?text=Instant+Noodles" alt="Instant Noodles">
+                    </div>
+                    <div class="product-info">
+                        <h3>Instant Noodles</h3>
+                        <p>Indomie, Pop Mie, and other favorite instant noodle brands</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x200/f5f5f5/c41230?text=Dairy" alt="Dairy Products">
+                    </div>
+                    <div class="product-info">
+                        <h3>Dairy Products</h3>
+                        <p>Indomilk, Cap Enaak, and premium dairy selections</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://placeholder.com/200x200/f5f5f5/c41230?text=Snacks" alt="Snacks">
+                    </div>
+                    <div class="product-info">
+                        <h3>Snacks</h3>
+                        <p>Chiki, Tiv Ta Tiv, and delicious snack varieties</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/200x200/f5f5f5/c41230?text=Seasonings" alt="Seasonings">
+                    </div>
+                    <div class="product-info">
+                        <h3>Seasonings</h3>
+                        <p>Sambal, sauces, and cooking essentials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/500x400/ddd/c41230?text=Indofood+Factory" alt="About Indofood">
+                    <div class="experience-badge">
+                        <span class="years">50+</span>
+                        <span class="text">Years of Excellence</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h2>Leading The Food Industry <span>Since 1968</span></h2>
+                    <p>Indofood has grown to become one of Indonesia's largest and most successful companies, delivering quality food products that have become household names across the nation.</p>
+                    <p>Our commitment to innovation, quality, and sustainability drives us to continuously improve and expand our product offerings to meet the evolving needs of our consumers.</p>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Product Categories</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100M+</div>
+                            <div class="stat-label">Happy Consumers</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Beloved Brands</h2>
+                <p>Trusted by millions of families across Indonesia</p>
+            </div>
+            <div class="brands-grid">
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Indomie" alt="Indomie">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Indomilk" alt="Indomilk">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Chiki" alt="Chiki">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Pop+Mie" alt="Pop Mie">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Sarimi" alt="Sarimi">
+                </div>
+                <div class="brand-item">
+                    <img src="https://via.placeholder.com/100x60/ffffff/ffffff?text=Supermi" alt="Supermi">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="news">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest News</h2>
+                <p>Stay updated with our latest developments</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x220/ddd/c41230?text=News+Image" alt="News">
+                        <div class="news-date">
+                            <div class="day">15</div>
+                            <div class="month">Mar</div>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Company News</div>
+                        <h3 class="news-title">Indofood Launches New Sustainable Packaging Initiative</h3>
+                        <p class="news-excerpt">Committed to environmental responsibility, Indofood introduces eco-friendly packaging across major product lines...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x220/ddd/c41230?text=News+Image" alt="News">
+                        <div class="news-date">
+                            <div class="day">12</div>
+                            <div class="month">Mar</div>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Product Launch</div>
+                        <h3 class="news-title">New Indomie Flavor Debuts Nationwide</h3>
+                        <p class="news-excerpt">The latest addition to our instant noodle family brings authentic local taste to every household...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://via.placeholder.com/400x220/ddd/c41230?text=News+Image" alt="News">
+                        <div class="news-date">
+                            <div class="day">08</div>
+                            <div class="month">Mar</div>
+                        </div>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-category">Awards</div>
+                        <h3 class="news-title">Indofood Wins Best Employer Award 2025</h3>
+                        <p class="news-excerpt">Recognized for outstanding workplace culture and employee development programs...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://via.placeholder.com/150x50/c41230/ffffff?text=INDOFOOD" alt="Indofood">
+                    <p>Indofood is Indonesia's largest food company, committed to providing quality food products and creating sustainable value for all stakeholders.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Perusahaan</a></li>
+                        <li><a href="#">Our Products</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Investor Relations</a></li>
+                        <li><a href="#">Career</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">Instant Noodles</a></li>
+                        <li><a href="#">Dairy</a></li>
+                        <li><a href="#">Snacks</a></li>
+                        <li><a href="#">Seasonings</a></li>
+                        <li><a href="#">Beverages</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Customer Service</a></li>
+                        <li><a href="#">Media Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PT Indofood Sukses Makmur Tbk. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.product-card, .news-card, .stat-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <script>
+        // Dropdown toggle for touch/click devices + close on outside click
+        document.addEventListener('click', function(e){
+            const toggle = e.target.closest('.dropdown-toggle');
+            // close all menus first
+            document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show'));
+            if(toggle){
+                e.preventDefault();
+                const menu = toggle.parentElement.querySelector('.dropdown-menu');
+                if(menu) menu.classList.toggle('show');
+            }
+        });
+
+        // Close dropdowns on ESC
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('show')); } });
+    </script>
+
+</body>
+</html>

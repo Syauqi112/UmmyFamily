@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita - Indofood</title>
+</head>
+<body>
+<script>
+fetch('p.html').then(r=>r.text()).then(html=>{
+  document.open(); document.write(html); document.close();
+  document.title = 'Berita - Indofood';
+  try{ const h = document.querySelector('[data-lang="hero_title"]'); if(h) h.textContent = 'Berita'; }catch(e){}
+  try{ const p = document.querySelector('[data-lang="hero_text"]'); if(p) p.textContent = 'Berita terkini tentang Indofood.'; }catch(e){}
+  try{ const c = document.querySelector('[data-lang="hero_cta"]'); if(c) c.textContent = 'Baca Berita'; }catch(e){}
+  const nav = document.querySelector('[data-lang="nav_news"]'); if(nav) nav.classList.add('active');
+});
+</script>
+</body>
+</html>
